@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar with Drawer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
+
+<style>
+        body {
+            background-color: #111;
+        }
+
+        .card {
+            background-color: #333;
+            color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Animation Styles */
+        .animated-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .animate-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .animate-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+
+
+  </head>
+<body>
+    <nav class="bg-gray-900 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold">Your Logo</div>
+            <div class="lg:hidden">
+                <button id="openDrawer" class="text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="hidden lg:flex space-x-6">
+                <a href="#" class="hover:text-gray-300">Home</a>
+                <a href="#" class="hover:text-gray-300">About</a>
+                <a href="#" class="hover:text-gray-300">Services</a>
+                <a href="#" class="hover:text-gray-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileDrawer" class="fixed inset-y-0 right-0 transform translate-x-full bg-gray-900 text-white p-8 w-64 z-50">
+        <button id="closeDrawer" class="text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white absolute top-4 right-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <ul class="space-y-4">
+            <li><a href="#" class="hover:text-gray-300">Home</a></li>
+            <li><a href="#" class="hover:text-gray-300">About</a></li>
+            <li><a href="#" class="hover:text-gray-300">Services</a></li>
+            <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+        </ul>
+    </div>
+    <section class="bg-white dark:bg-gray-900">
+      <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+          <div class="mr-auto place-self-center lg:col-span-7">
+              <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">Payments tool for software companies</h1>
+              <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">From checkout to global sales tax compliance, companies around the world use Flowbite to simplify their payment stack.</p>
+              <a href="#" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+                  Get started
+                  <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              </a>
+              <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                  Speak to Sales
+              </a> 
+          </div>
+          <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+              <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup">
+          </div>                
+      </div>
+  </section>
+  <section class="bg-white dark:bg-gray-900">
+    <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+        <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">We didn't reinvent the wheel</h2>
+            <p class="mb-4">We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick, but big enough to deliver the scope you want at the pace you need. Small enough to be simple and quick, but big enough to deliver the scope you want at the pace you need.</p>
+            <p>We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 mt-8">
+            <img class="w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png" alt="office content 1">
+            <img class="mt-4 w-full lg:mt-10 rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-1.png" alt="office content 2">
+        </div>
+    </div>
+</section>
+    <style>
+
+
+    </style>
+    <script>
+      const iframe = document.querySelector('iframe');
+      const iframeRect = iframe.getBoundingClientRect();
+
+      const cropDiv = document.createElement('div');
+      cropDiv.style.position = 'absolute';
+      cropDiv.style.top = iframeRect.top + 'px';
+      cropDiv.style.left = iframeRect.left + 'px';
+      cropDiv.style.width = iframeRect.width + 'px';
+      cropDiv.style.height = iframeRect.height + 'px';
+      cropDiv.style.backgroundColor = 'white';
+
+      document.body.appendChild(cropDiv);
+
+    </script>
+    <style>
+      iframe {
+  object-fit: cover;
+  object-position: center;
+  width: 365px;  
+  height: 770px; 
+  transform: scale(1) translate(-10%, -11%);
+}
+.corner-wrapper {
+  display: block;
+  overflow: hidden;
+  width: 300px;
+  height: 610px;
+  border-radius: 10px;
+  border: 3px solid #3f2e2e;
+}
+    </style>
+
+
+    <div class="corner-wrapper">
+      <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FRUNRp03tNpxr8gKEvxe3Oa%2FCosmix%3Fpage-id%3D0%253A1%26type%3Ddesign%26node-id%3D22-620%26viewport%3D-755%252C230%252C0.26%26t%3DrxL1tJv4yct7c5Fy-1%26scaling%3Dscale-down%26starting-point-node-id%3D20%253A337%26fbclid%3DIwAR3HhuQhM3m-OL9sVFTczC0Te6RDTi3nTvgEg-_4IWNBeOV0PNpHwOqKRQU%26mode%3Ddesign&hide-ui=1" allowfullscreen style="background-color: aliceblue;" height="450"></iframe>
+
+    </div>
+    <!-- JavaScript for Animation -->
+    <script>
+        // Function to add 'show' class to cards for animation
+        function animateCards() {
+            const cards = document.querySelectorAll('.animate-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('show');
+                }, index * 200); // Adjust the delay for card animations
+            });
+        }
+
+        // Trigger the card animations when the page loads
+        window.addEventListener('load', animateCards);
+    </script>
+    <script>
+      // JavaScript to open and close the mobile drawer
+      const openDrawerButton = document.getElementById('openDrawer');
+      const closeDrawerButton = document.getElementById('closeDrawer');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+  
+      openDrawerButton.addEventListener('click', () => {
+          mobileDrawer.classList.add('translate-x-0'); // Add this line to show the drawer
+      });
+  
+      closeDrawerButton.addEventListener('click', () => {
+          mobileDrawer.classList.remove('translate-x-0'); // Add this line to hide the drawer
+      });
+  </script>
+</body>
+</html>
